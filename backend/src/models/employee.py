@@ -1,4 +1,4 @@
-from config.database import get_db
+from src.config.database import get_db
 
 def create_employee_table():
     conn = get_db()
