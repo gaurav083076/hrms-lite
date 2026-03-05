@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import Dashboard from './pages/Dashboard.jsx';
+import Employees from './pages/Employees.jsx';
+import Attendance from './pages/Attendance.jsx';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function Sidebar() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <aside className="sidebar">
+      <div className="sidebar-logo">
+        <div className="logo-mark">
+          <div className="logo-icon">HR</div>
+          <div>
+            <div className="logo-text">HRMS Lite</div>
+            <span className="logo-sub">Admin Panel</span>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <nav className="sidebar-nav">
+        <span className="nav-section-label">Overview</span>
+        <NavLink to="/" end className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+          Dashboard
+        </NavLink>
+
+        <span className="nav-section-label">Management</span>
+        <NavLink to="/employees" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+          Employees
+        </NavLink>
+        <NavLink to="/attendance" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+          Attendance
+        </NavLink>
+      </nav>
+
+      <div className="sidebar-footer">
+        <span>HRMS Lite v1.0</span>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </aside>
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div className="app-shell">
+        <Sidebar />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/employees" element={<Employees />} />
+            <Route path="/attendance" element={<Attendance />} />
+          </Routes>
+        </main>
+      </div>
+      <Toaster position="bottom-right" />
+    </BrowserRouter>
+  );
+}
