@@ -2,10 +2,10 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 load_dotenv()
-from models.employee import create_employee_table
-from models.attendance import create_attendance_table
-from routes.employee import employee_bp
-from routes.attendance import attendance_bp
+from src.models.employee import create_employee_table
+from src.models.attendance import create_attendance_table
+from src.routes.employee import employee_bp
+from src.routes.attendance import attendance_bp
 
 app = Flask(__name__)
 CORS(app)
