@@ -4,9 +4,11 @@ load_dotenv()
 from models.employee import create_employee_table
 from models.attendance import create_attendance_table
 from routes.employee import employee_bp
+from routes.attendance import attendance_bp
 
 app = Flask(__name__)
 app.register_blueprint(employee_bp)
+app.register_blueprint(attendance_bp)
 
 try:
     create_employee_table()
