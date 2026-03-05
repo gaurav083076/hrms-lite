@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 import psycopg2.extras
 import re
-from config.database import get_db
+from src.config.database import get_db
 
 employee_bp = Blueprint('employees', __name__)
 

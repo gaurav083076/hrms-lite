@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 import psycopg2.extras
-from config.database import get_db
+from src.config.database import get_db
 
 attendance_bp = Blueprint('attendance', __name__)
 
